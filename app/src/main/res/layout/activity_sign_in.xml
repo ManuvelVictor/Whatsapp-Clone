@@ -84,7 +84,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnSignIn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtClickSignUp"
@@ -99,7 +99,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnSignUp"
+        android:layout_below="@id/btnSignIn"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
