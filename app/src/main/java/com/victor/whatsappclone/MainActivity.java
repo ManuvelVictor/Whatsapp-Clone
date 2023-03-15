@@ -3,6 +3,7 @@ package com.victor.whatsappclone;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,13 +11,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
+import com.victor.whatsappclone.adapter.FragmentsAdapter;
 import com.victor.whatsappclone.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     FirebaseAuth mAuth;
+
+    FragmentsAdapter fragmentsAdapter;
+
+    private final String[] titles = new String[]{"Chats", "Status", "Calls"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        fragmentsAdapter = new FragmentsAdapter(this);
+        binding.viewPager2.setAdapter(fragmentsAdapter);
+        new TabLayoutMediator(binding.tabLayout, binding.viewPager2,((tab, position) ->  tab.setText(titles[position]))).attach();
+        
     }
 
     @Override
@@ -36,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
