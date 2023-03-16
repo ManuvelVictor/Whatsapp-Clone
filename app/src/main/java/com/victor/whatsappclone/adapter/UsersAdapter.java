@@ -1,6 +1,7 @@
 package com.victor.whatsappclone.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.victor.whatsappclone.ChatDetailActivity;
 import com.victor.whatsappclone.R;
 import com.victor.whatsappclone.model.Users;
 
@@ -38,6 +40,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         Users users = list.get(position);
         Picasso.get().load(users.getProfilePic()).placeholder(R.drawable.avatar3).into(holder.image);
         holder.userName.setText(users.getUserName());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ChatDetailActivity.class);
+            intent.putExtra("userId", users.getUserId());
+            intent.putExtra("profilePic", users.getProfilePic());
+            intent.putExtra("userName", users.getUserName());
+            context.startActivity(intent);
+        });
     }
 
     @Override
