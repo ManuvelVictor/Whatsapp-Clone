@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentsAdapter = new FragmentsAdapter(this);
         binding.viewPager2.setAdapter(fragmentsAdapter);
-        new TabLayoutMediator(binding.tabLayout, binding.viewPager2,((tab, position) ->  tab.setText(titles[position]))).attach();
-        
+        new TabLayoutMediator(binding.tabLayout, binding.viewPager2, ((tab, position) -> tab.setText(titles[position]))).attach();
+
     }
 
     @Override
@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.group_chat:
-                Toast.makeText(this, "Group Chat is Started", Toast.LENGTH_SHORT).show();
+                Intent groupChatIntent = new Intent(MainActivity.this, GroupChatActivity.class);
+                startActivity(groupChatIntent);
                 break;
 
             case R.id.logout:
